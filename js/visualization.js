@@ -11,25 +11,18 @@
 
 		// console.log(data[0]);
 
-		groupingRestaurantData = d3.group(data, d => d._seller_id)
+		let groupingRestaurantData = d3.group(data, d => d._seller_id)
 
 		console.log(groupingRestaurantData)
-
-		restaurantsOrderCount = d3.rollup(data, v => v.length, d=>d._seller_id)
-		console.log(restaurantsOrderCount)
-
-		restaurantOrderDistance = d3.rollup(data, v=> d3.mean(v, d => d.distance_miles_a2b), d => d._seller_id)
-		console.log(restaurantOrderDistance)
 
 
 		const dispatchString = 'selectionUpdated';
 
-		let barChart1 = barChart1()
-		// .x(d => )
-		// .xLabel('Restaurants')
-		// .y(d => d.)
-		// .yLabelOffset(40)
+		let rerstaurantOrderData = barChart1()
 		('#vis-svg-1', data)
+
+		// let restaurantDistanceData = barChart2()
+		// (, data)
 
 	});
 
