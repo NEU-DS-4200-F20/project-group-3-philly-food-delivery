@@ -6,7 +6,7 @@
   <meta charset='utf-8'>
 
   <!-- Title -->
-  <title>Project Team ##: Topic, DS 4200 F20</title>
+  <title>Project Team 3: Philly Food Delivery, DS 4200 F20</title>
   
   <!-- CSS Styling -->
   <link rel='stylesheet' href='style.css'>
@@ -26,13 +26,13 @@
 <body>
 
   <!-- Update this with your GitHub repo URL -->
-  <span id='forkongithub'><a href='https://github.com/NEU-DS-4200-F20-Staff/Project'>Fork me on GitHub</a></span>
+  <span id='forkongithub'><a href='https://github.com/NEU-DS-4200-F20/project-group-3-philly-food-delivery'>Fork me on GitHub</a></span>
 
   <!-- Writeup -->
   <div class='content-column'>
-   <h1>Project Team ##: Topic, DS4200 F20</h1>
+   <h1>Project Team 3: Philly Food Delivery, DS4200 F20</h1>
     
-    <p><strong>Student One</strong>, <strong>Student Two</strong>, <strong>Student Three</strong></p>
+    <p><strong>Ming Yuen Thomas Cheong</strong>, <strong>Benjamin Jacobson</strong>, <strong>Christopher Sedayao</strong></p>
     
     <p>Service-Learning Course Project as part of
 	<a href='https://canvas.instructure.com/courses/1781732'>DS 4200 F20: Information Visualization</a>, 
@@ -43,7 +43,8 @@
     
     <h1>Abstract</h1>
     
-    <p>Replace with your paper abstract.</p>
+    <p>This project aims to leverage data that we get from our partner and use this opportunity to provide insight and analysis to help restaurants/businesses to make better informed operational decisions that will be beneficial for their company.
+    </p>
 
     
     <h1>Visualization</h1>
@@ -59,16 +60,12 @@
     <!-- Delete all the sample SVG code below after the viewbox to before the closing tag. Populate this part of the SVG with D3. -->
     <svg id='vis-svg-1'
       preserveAspectRatio='xMidYMid meet' class='vis-svg' viewBox='0 0 1000 1000' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
-      
-      
-      <text x='30%' y='35%' text-anchor='middle'>A</text>
-      <text x='70%' y='35%' text-anchor='middle'>B</text>
-      <rect x='20%' y='40%' width='20%' height='20%' fill='yellow'></rect>
-      <circle cx='70%' cy='50%' r='10%' fill='blue'></circle>
-      
-      
     <!-- Don't delete the closing tag! -->
     </svg>
+<!--     <svg class='bar-chart' preserveAspectRatio="xMidYMid meet" viewBox=""></svg>
+    <svg class='pie-chart1' preserveAspectRatio="xMidYMid meet" viewBox=""></svg>
+    <svg class='pie-chart2' preserveAspectRatio="xMidYMid meet" viewBox=""></svg> -->
+
   </div>
   
   <!-- Further writeup -->
@@ -103,11 +100,20 @@
         Pure CSS responsive 'Fork me on GitHub' ribbon</a>
         by Chris Heilmann is used to create the banner that links back to the source code repository.
       </li>
+      <li><a href='https://stackoverflow.com/questions/38296484/count-text-fields-from-csv-dataset-in-d3-js'>
+        Count fields from csv dataset in d3 js</a>
+        from Stackoverflow was used to create a map of each restaurant and a distinct count of a variable
+      </li>
+      <li><a href='https://observablehq.com/@d3/d3-group'>
+        d3 grouping</a>
+        from observablehq.com was used to learn how to group data using d3 and how to use rollup functions
+      </li>
     </ul>
   </div>
   
   <!-- Scripts at the end avoid need for dealing with async, defer, or onload event handlers -->
   <script src='lib/d3.v6.1.1/d3.min.js'></script>
+  <script src='js/restaurantOrderCount.js'></script>
   <script src='js/visualization.js'></script>
 </body>
 </html>
