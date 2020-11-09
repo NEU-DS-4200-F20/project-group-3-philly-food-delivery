@@ -39,7 +39,7 @@ function barChart1() {
 			.call(yAxis)
 			//Add label
 			.append('text')
-			.attr('x', 30)
+			.attr('x', 35)
 			.attr('y', -10)
 			.style('stroke', 'black')
 			.text('Number of Orders');;
@@ -48,11 +48,28 @@ function barChart1() {
 		console.log(keys)
 
 		let xScale = d3.scaleBand()
-			.range([0, width - margin.right])
+			.range([0, width - margin.right-50])
 			.domain(keys)
 			.padding(.1)
 
 		let xAxis = d3.axisBottom(xScale);
+
+		let bar = chartGroup.append('g')
+		  .selectAll('rect')
+		  .data(restaurantsOrderCount)
+		  .enter()
+		  .append('rect')
+		  .attr('x', function(d) {
+		  	return xScale(d[0]); //how to just use map keys
+		  })
+		  .attr('y', function(d) {
+		    return yScale(restaurantsOrderCount.get(d[0]));
+		  })
+		  .attr('width', xScale.bandwidth())
+		  .attr('fill', 'steelblue')
+		  .attr('height', function(d) {
+		    return height - margin.bottom - 30 - yScale(restaurantsOrderCount.get(d[0]));
+		  });
 
 		chartGroup.append('g')
 	  		.attr('class', 'x axis')
@@ -60,27 +77,10 @@ function barChart1() {
 	  		.call(xAxis)
 	  		//Add label
 			.append('text')
-			.attr('x', 250)
-			.attr('y', 30)
+			.attr('x', (width - 50) / 2)
+			.attr('y', 25)
 			.style('stroke', 'black')
 			.text('Restaurants');
-
-	  	// let bar = chartGroup.append('g')
-		  // .selectAll('rect')
-		  // .data(restaurantsOrderCount)
-		  // .enter()
-		  // .append('rect')
-		  // .attr('x', function(d) {
-		  // 	return xScale(d[0]); //how to just use map keys
-		  // })
-		  // .attr('y', function(d) {
-		  //   return yScale(restaurantsOrderCount.get(d[0]));
-		  // })
-		  // .attr('width', xScale.bandwidth())
-		  // .attr('fill', 'steelblue')
-		  // .attr('height', function(d) {
-		  //   return height - margin.bottom - yScale(restaurantsOrderCount.get(d[0]));
-		  // });
 
 
 		//   let test = new Map();
