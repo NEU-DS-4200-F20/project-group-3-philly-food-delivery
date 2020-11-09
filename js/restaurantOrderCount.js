@@ -29,7 +29,7 @@ function barChart1() {
 				.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
 		let yScale = d3.scaleLinear()
-			.domain([0, maxCount])
+			.domain([0, maxCount + 1000])
 			.range([height - margin.bottom - margin.top, 0]);
 
 		let yAxis = d3.axisLeft(yScale);
@@ -42,8 +42,9 @@ function barChart1() {
 		console.log(keys)
 
 		let xScale = d3.scaleBand()
-			.range([0, width])
+			.range([0 + margin.left, width - margin.right])
 			.domain(keys)
+			.padding(.1)
 
 		let xAxis = d3.axisBottom(xScale);
 
@@ -58,22 +59,22 @@ function barChart1() {
 			.style('stroke', 'black')
 			.text('Restaurants');
 
-	  	// let bar = svg
-		  // .selectAll('rect')
-		  // .data(data)
-		  // .enter()
-		  // .append('rect')
-		  // .attr('x', function(d) {
-		  // 	return xScale(d._seller_id); //how to just use map keys
-		  // })
-		  // .attr('y', function(d) {
-		  //   return yScale(restaurantsOrderCount[d._seller_id]);
-		  // })
-		  // .attr('width', xScale.bandwidth())
-		  // .attr('fill', 'steelblue')
-		  // .attr('height', function(d) {
-		  //   return height - margin.bottom - yScale(restaurantsOrderCount[d._seller_id]);
-		  // });
+	  	let bar = svg
+		  .selectAll('rect')
+		  .data(restaurantsOrderCount)
+		  .enter()
+		  .append('rect')
+		  .attr('x', function(d) {
+		  	return xScale(d[0]); //how to just use map keys
+		  })
+		  .attr('y', function(d) {
+		    return yScale(restaurantsOrderCount.get(d[0]));
+		  })
+		  .attr('width', xScale.bandwidth())
+		  .attr('fill', 'steelblue')
+		  .attr('height', function(d) {
+		    return height - margin.bottom - yScale(restaurantsOrderCount.get(d[0]));
+		  });
 
 
 		//   let test = new Map();
