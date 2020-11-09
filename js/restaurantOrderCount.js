@@ -29,20 +29,26 @@ function barChart1() {
 				.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
 		let yScale = d3.scaleLinear()
-			.domain([0, maxCount + 1000])
+			.domain([0, maxCount])
 			.range([height - margin.bottom - margin.top, 0]);
 
 		let yAxis = d3.axisLeft(yScale);
 		chartGroup.append('g')
 			.attr('class', 'y axis')
 			.attr('transform', 'translate(0, 0)')
-			.call(yAxis);
+			.call(yAxis)
+			//Add label
+			.append('text')
+			.attr('x', 30)
+			.attr('y', -10)
+			.style('stroke', 'black')
+			.text('Number of Orders');;
 
 		let keys = Array.from(restaurantsOrderCount.keys());
 		console.log(keys)
 
 		let xScale = d3.scaleBand()
-			.range([0 + margin.left, width - margin.right])
+			.range([0, width - margin.right])
 			.domain(keys)
 			.padding(.1)
 
@@ -55,26 +61,26 @@ function barChart1() {
 	  		//Add label
 			.append('text')
 			.attr('x', 250)
-			.attr('y', 0)
+			.attr('y', 30)
 			.style('stroke', 'black')
 			.text('Restaurants');
 
-	  	let bar = svg
-		  .selectAll('rect')
-		  .data(restaurantsOrderCount)
-		  .enter()
-		  .append('rect')
-		  .attr('x', function(d) {
-		  	return xScale(d[0]); //how to just use map keys
-		  })
-		  .attr('y', function(d) {
-		    return yScale(restaurantsOrderCount.get(d[0]));
-		  })
-		  .attr('width', xScale.bandwidth())
-		  .attr('fill', 'steelblue')
-		  .attr('height', function(d) {
-		    return height - margin.bottom - yScale(restaurantsOrderCount.get(d[0]));
-		  });
+	  	// let bar = chartGroup.append('g')
+		  // .selectAll('rect')
+		  // .data(restaurantsOrderCount)
+		  // .enter()
+		  // .append('rect')
+		  // .attr('x', function(d) {
+		  // 	return xScale(d[0]); //how to just use map keys
+		  // })
+		  // .attr('y', function(d) {
+		  //   return yScale(restaurantsOrderCount.get(d[0]));
+		  // })
+		  // .attr('width', xScale.bandwidth())
+		  // .attr('fill', 'steelblue')
+		  // .attr('height', function(d) {
+		  //   return height - margin.bottom - yScale(restaurantsOrderCount.get(d[0]));
+		  // });
 
 
 		//   let test = new Map();
