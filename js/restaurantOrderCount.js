@@ -6,9 +6,8 @@ function barChart1() {
 		console.log(restaurantsOrderCount)
 
 		let maxCount = d3.max(restaurantsOrderCount.values())
-		let minCount = d3.min(restaurantsOrderCount.values())
 
-		console.log(maxCount, minCount)
+		console.log(maxCount)
 
 		let width = 500,
 		height = 500,
@@ -51,7 +50,42 @@ function barChart1() {
 		chartGroup.append('g')
 	  		.attr('class', 'x axis')
 	  		.attr('transform', 'translate(0, ' + (height - margin.bottom - margin.top) + ')')
-	  		.call(xAxis);
+	  		.call(xAxis)
+	  		//Add label
+			.append('text')
+			.attr('x', 250)
+			.attr('y', 0)
+			.style('stroke', 'black')
+			.text('Restaurants');
+
+	  	// let bar = svg
+		  // .selectAll('rect')
+		  // .data(data)
+		  // .enter()
+		  // .append('rect')
+		  // .attr('x', function(d) {
+		  // 	return xScale(d._seller_id); //how to just use map keys
+		  // })
+		  // .attr('y', function(d) {
+		  //   return yScale(restaurantsOrderCount[d._seller_id]);
+		  // })
+		  // .attr('width', xScale.bandwidth())
+		  // .attr('fill', 'steelblue')
+		  // .attr('height', function(d) {
+		  //   return height - margin.bottom - yScale(restaurantsOrderCount[d._seller_id]);
+		  // });
+
+
+		//   let test = new Map();
+		//   let rest = ['Restaurant 1', 'Restaurant 2'];
+		//   let groupingRestaurantData = d3.group(data, d => d._seller_id)
+
+		//   for (var i = 0; i < rest.length; i++) {
+  //  			test.set(rest[i], groupingRestaurantData.get(rest[i]))
+		// }
+		// 	console.log("here here", test);
+
+
 
 		return chart;
 	}
