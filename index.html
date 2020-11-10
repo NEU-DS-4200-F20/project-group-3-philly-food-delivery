@@ -59,12 +59,14 @@
     <!-- Change viewbox to whatever you want, e.g., '0 0 1000 6000' This determines your aspect ratio and coordinate system -->    
     <!-- Delete all the sample SVG code below after the viewbox to before the closing tag. Populate this part of the SVG with D3. -->
     <svg id='vis-svg-1'
-      preserveAspectRatio='xMidYMid meet' class='vis-svg' viewBox='0 0 1000 1000' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+      preserveAspectRatio='xMidYMid meet' class='vis-svg' viewBox='0 0 1000 575' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
     <!-- Don't delete the closing tag! -->
     </svg>
-<!--     <svg class='bar-chart' preserveAspectRatio="xMidYMid meet" viewBox=""></svg>
-    <svg class='pie-chart1' preserveAspectRatio="xMidYMid meet" viewBox=""></svg>
-    <svg class='pie-chart2' preserveAspectRatio="xMidYMid meet" viewBox=""></svg> -->
+    <!-- <svg class='bar-chart' preserveAspectRatio="xMidYMid meet" viewBox=""></svg> -->
+    <svg id='pie-chart1' 
+    preserveAspectRatio='xMidYMid meet' class='piechart-svg' viewBox='0 0 1000 575' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>	
+    </svg>
+    <!-- <svg class='pie-chart2' preserveAspectRatio="xMidYMid meet" viewBox=""></svg> -->
 
   </div>
   
@@ -118,6 +120,7 @@
   <!-- Scripts at the end avoid need for dealing with async, defer, or onload event handlers -->
   <script src='lib/d3.v6.1.1/d3.min.js'></script>
   <script src='js/restaurantOrderCount.js'></script>
+  <script src='js/orderOriginChart.js'></script>
   <script src='js/visualization.js'></script>
 </body>
 </html>

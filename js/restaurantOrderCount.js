@@ -45,11 +45,11 @@ function barChart1() {
 			.text('Number of Orders');;
 
 		let keys = Array.from(restaurantsOrderCount.keys());
-		console.log(keys)
+		console.log(keys.sort())
 
 		let xScale = d3.scaleBand()
 			.range([0, width - margin.right-50])
-			.domain(keys)
+			.domain(keys.sort((a,b) =>a-b))
 			.padding(.1)
 
 		let xAxis = d3.axisBottom(xScale);

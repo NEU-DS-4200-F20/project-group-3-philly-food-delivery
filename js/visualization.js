@@ -7,6 +7,7 @@
 		// converting distance from string to int
 		data.forEach(function(d) {
 			d.distance_miles_a2b = +d.distance_miles_a2b
+			d._seller_id = +d._seller_id
 		})
 
 		// console.log(data[0]);
@@ -23,6 +24,9 @@
 
 		// let restaurantDistanceData = barChart2()
 		// (, data)
+
+		let orderOriginChart = piechart1()
+		('#pie-chart1', data)
 
 	});
 
