@@ -7,8 +7,8 @@ function piechart1() {
 
 		// let maxCount = d3.max(restaurantsOrderCount.values())
 
-		let width = 500,
-		height = 500,
+		let width = 200,
+		height = 200,
 		margin = {
 			top: 30,
 			bottom: 30,
@@ -16,7 +16,10 @@ function piechart1() {
 			right: 30
 		},
 		radius = Math.min(width, height) / 2,
-		colors = d3.scaleOrdinal(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
+		colors = d3.scaleOrdinal()
+			.domain(Array.from(orderOriginMap.keys()))
+			.range(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
+			console.log(Array.from(orderOriginMap.keys()))
 
 		let svg = d3.select(selector)
 			.append('svg')
@@ -26,26 +29,28 @@ function piechart1() {
 
 		let chartGroup = svg
 			.append('g')
-				.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+				.attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
 		// Compute the position of each group on the pie:
-		let pie = d3.pie();
+		let pie = d3.pie()
+			.value(function(d) {return d[1];});
 
-		let arc = d3.arc()
-			.innerRadius(0);
-			.outerRadius(radius);
+		let data_ready = pie(orderOriginMap.entries())
+		console.log(data_ready)
 
-		let arcs = chartGroup.selectAll("arc")
-			.data(pie(orderOriginMap)) // map but maybe needs list??
+		chartGroup.selectAll('whatever')
+			.data(data_ready)
 			.enter()
-			.append("g")
-			.attr("class", "arc");
-
-		arcs.append("path")
-			.attr("fill", function(d, i) {
-				return color(i);
-			})
-			.attr("d", arc);
+			.append('path')
+			.attr('d', d3.arc()
+				.innerRadius(0)
+				.outerRadius(radius)
+			)
+			.attr('fill', function(d){ 
+				return(colors(d.data[0])) })
+			.attr("stroke", "black")
+			.style("stroke-width", "2px")
+			.style("opacity", 0.7)
 
 		return chart;
 	}

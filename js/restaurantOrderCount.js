@@ -42,7 +42,7 @@ function barChart1() {
 			.attr('x', 35)
 			.attr('y', -10)
 			.style('stroke', 'black')
-			.text('Number of Orders');;
+			.text('Number of Orders');
 
 		let keys = Array.from(restaurantsOrderCount.keys());
 		console.log(keys.sort())
@@ -81,6 +81,12 @@ function barChart1() {
 			.attr('y', 25)
 			.style('stroke', 'black')
 			.text('Restaurants');
+
+		svg.append('text')
+			.attr('x', width / 2 - 150)
+			.attr('y', 20)
+			.style('stroke', 'black')
+			.text('Number of Orders per Top 10 Restaurants');
 
 
 		//   let test = new Map();
