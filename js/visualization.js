@@ -19,14 +19,15 @@
 
 		const dispatchString = 'selectionUpdated';
 
+		// calling function to create bar chart
 		let rerstaurantOrderData = barChart1()
 		('#vis-svg-1', data)
 
 		// let restaurantDistanceData = barChart2()
 		// (, data)
 
-		let orderOriginChart = piechart1()
-		('#pie-chart1', data)
+		// let orderOriginChart = piechart1()
+		// ('#pie-chart1', data)
 
 	});
 
