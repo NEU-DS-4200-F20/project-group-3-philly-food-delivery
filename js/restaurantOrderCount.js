@@ -4,12 +4,11 @@ function barChart1() {
 
 		//creating map of the data by grouping by restaurants
 		let restaurantsOrderCount = d3.rollup(data, v => v.length, d=>d._seller_id)
-		console.log(restaurantsOrderCount)
+		
 
 		// getting max order count for y-axis scale
 		let maxCount = d3.max(restaurantsOrderCount.values())
 
-		console.log(maxCount)
 
 		// setting dimensions
 		let width = 500,
@@ -52,7 +51,7 @@ function barChart1() {
 
 		// getting restaurant names from the map
 		let keys = Array.from(restaurantsOrderCount.keys());
-		console.log(keys.sort())
+
 
 		// creating x axis scale
 		let xScale = d3.scaleBand()
@@ -98,16 +97,6 @@ function barChart1() {
 			.attr('y', 20)
 			.style('stroke', 'black')
 			.text('Number of Orders per Top 10 Restaurants');
-
-
-		//   let test = new Map();
-		//   let rest = ['Restaurant 1', 'Restaurant 2'];
-		//   let groupingRestaurantData = d3.group(data, d => d._seller_id)
-
-		//   for (var i = 0; i < rest.length; i++) {
-  //  			test.set(rest[i], groupingRestaurantData.get(rest[i]))
-		// }
-		// 	console.log("here here", test);
 
 
 

@@ -23,8 +23,8 @@
 		let rerstaurantOrderData = barChart1()
 		('#vis-svg-1', data)
 
-		// let restaurantDistanceData = barChart2()
-		// (, data)
+		let restaurantDistanceData = barChart2()
+		('#restaurantDistance', data)
 
 		// let orderOriginChart = piechart1()
 		// ('#pie-chart1', data)
