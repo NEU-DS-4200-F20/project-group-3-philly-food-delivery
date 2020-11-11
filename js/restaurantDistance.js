@@ -79,7 +79,17 @@ function barChart2() {
 		  .attr('fill', 'steelblue')
 		  .attr('height', function(d) {
 		    return height - margin.bottom - 30 - yScale(restaurantsOrderDistance.get(d[0]));
-		  });
+		  })
+		  .on('mouseover', function(d) { 
+			  
+			d3.select(this)
+				.style('fill', 'red');
+				console.log(this)
+			})
+		  .on('mouseout', function(d) {
+			d3.select(this)
+				.style('fill', 'steelblue')
+			});
 
 		chartGroup.append('g')
 	  		.attr('class', 'x axis')

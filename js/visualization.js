@@ -14,13 +14,13 @@
 
 		let groupingRestaurantData = d3.group(data, d => d._seller_id)
 
-		console.log(groupingRestaurantData)
+		//console.log(groupingRestaurantData)
 
 
 		const dispatchString = 'selectionUpdated';
 
 		// calling function to create bar chart
-		let rerstaurantOrderData = barChart1()
+		let restaurantOrderData = barChart1()
 		('#vis-svg-1', data)
 
 		let restaurantDistanceData = barChart2()
