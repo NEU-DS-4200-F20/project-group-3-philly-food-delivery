@@ -3,23 +3,23 @@ function piechart1() {
 	function chart(selector, data) {
 
 		let orderOriginMap = d3.rollup(data, v => v.length, d=>d.partner)
-		console.log(orderOriginMap)
+		
 
 		// let maxCount = d3.max(restaurantsOrderCount.values())
 
-		let width = 200,
-		height = 200,
+		let width = 400,
+		height = 350,
 		margin = {
 			top: 30,
 			bottom: 30,
 			left: 50,
 			right: 30
 		},
-		radius = Math.min(width, height) / 2,
+		radius = Math.min(width, height) / 2 - 20,
 		colors = d3.scaleOrdinal()
 			.domain(Array.from(orderOriginMap.keys()))
 			.range(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
-			console.log(Array.from(orderOriginMap.keys()))
+			// console.log(Array.from(orderOriginMap.keys()))
 
 		let svg = d3.select(selector)
 			.append('svg')
@@ -36,7 +36,7 @@ function piechart1() {
 			.value(function(d) {return d[1];});
 
 		let data_ready = pie(orderOriginMap.entries())
-		console.log(data_ready)
+		
 
 		chartGroup.selectAll('whatever')
 			.data(data_ready)
@@ -51,6 +51,39 @@ function piechart1() {
 			.attr("stroke", "black")
 			.style("stroke-width", "2px")
 			.style("opacity", 0.7)
+
+		// adding title
+		svg.append('text')
+        .attr('x', width / 2 - 100)
+        .attr('y', 15)
+        .style('stroke', 'black')
+		.text('Distribution of Order Origin'); 
+
+		let keys = Array.from(orderOriginMap.keys())
+
+		
+		// Add one dot in the legend for each name.
+		svg.selectAll("mydots")
+		.data(keys)
+		.enter()
+		.append("circle")
+			.attr("cx", 330)
+			.attr("cy", function(d,i){ return 20 + i*10}) 
+			.attr("r", 4)
+			.style("fill", function(d){ return colors(d)})
+
+		// Add one dot in the legend for each name.
+		svg.selectAll("mylabels")
+		.data(keys)
+		.enter()
+		.append("text")
+			.attr("x", 340)
+			.attr("y", function(d,i){ return 20 + i*10})
+			.style("fill", function(d){ return colors(d)})
+			.text(function(d){ return d})
+			.attr("text-anchor", "left")
+			.style("alignment-baseline", "middle")
+			.style("font-size", "10px")
 
 		return chart;
 	}

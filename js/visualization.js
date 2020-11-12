@@ -26,8 +26,11 @@
 		let restaurantDistanceData = barChart2()
 		('#restaurantDistance', data)
 
-		// let orderOriginChart = piechart1()
-		// ('#pie-chart1', data)
+		let orderOriginChart = piechart1()
+		('#pie-chart1', data)
+
+		let orderZoneChart = piechart2()
+		('#pie-chart2', data)
 
 	});
 
