@@ -1,6 +1,6 @@
 function barChart2() {
 
-	function chart(selector, data) {
+	function chart(selector, data, dispatch) {
 
 		// creating map of the data by grouping by restaurants
 		let restaurantsOrderDistance = d3.rollup(data, v=> d3.mean(v, d => d.distance_miles_a2b), d => d._seller_id)
@@ -80,16 +80,30 @@ function barChart2() {
 		  .attr('height', function(d) {
 		    return height - margin.bottom - 30 - yScale(restaurantsOrderDistance.get(d[0]));
 		  })
+		  .attr('id', function(d) {
+		  	return "rest" + d[0]
+		  })
 		  .on('mouseover', function(d) { 
 			  
 			d3.select(this)
 				.style('fill', 'red');
-				console.log(this)
+				// console.log(this)
+				dispatch.call('mouseOver', this, d3.select(this).attr('id'));
 			})
 		  .on('mouseout', function(d) {
 			d3.select(this)
 				.style('fill', 'steelblue')
+				dispatch.call('mouseOut', this, d3.select(this).attr('id'));
 			});
+
+		  dispatch.on("mouseOver" + ".b", function(id) {
+		  	d3.selectAll('#' + id)
+		  		.style('fill', 'red')
+		  })
+		  dispatch.on("mouseOut" + ".b", function(id) {
+		  	d3.selectAll('#' + id)
+		  		.style('fill', 'steelblue')
+		  })
 
 		chartGroup.append('g')
 	  		.attr('class', 'x axis')
@@ -113,5 +127,25 @@ function barChart2() {
 
 		return chart;
 	}
+
+	chart.selectionDispatcher = function(_) {
+		if (!arguments.length) return dispatcher;
+    	dispatcher = _;
+    	return chart;
+	}
+
+	chart.updateSelection = function (selectedData) {
+    if (!arguments.length) return;
+    console.log(selectedData)
+
+    d3.selectAll("#")
+
+    // Select an element if its datum was selected
+    // d3.selectAll("tr").classed('selected', d =>
+    //   selectedData.includes(d)
+    // );
+    // if bar class = selectedData?
+
+  };
 	return chart;
 }

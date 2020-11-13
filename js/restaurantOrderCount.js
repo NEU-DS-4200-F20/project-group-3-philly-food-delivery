@@ -1,6 +1,6 @@
 function barChart1() {
 
-	function chart(selector, data) {
+	function chart(selector, data, dispatch) {
 
 		//creating map of the data by grouping by restaurants
 		let restaurantsOrderCount = d3.rollup(data, v => v.length, d=>d._seller_id)
@@ -79,14 +79,30 @@ function barChart1() {
 		  .attr('height', function(d) {
 		    return height - margin.bottom - 30 - yScale(restaurantsOrderCount.get(d[0]));
 		  })
-		  .on('mouseover', function(d) { 
-			  d3.select(this)
-				  .style('fill', 'red');
+		  .attr('id', function(d) {
+		  	return "rest" + d[0]
+		  })
+		  .on('mouseover', function(d) {
+		  	d3.select(this)
+		  		.style('fill', "red")
+		  	dispatch.call('mouseOver', this, d3.select(this).attr('id'));		  	
 		  })
 		  .on('mouseout', function(d) {
 			  d3.select(this)
 				  .style('fill', 'steelblue')
+			dispatch.call('mouseOut', this, d3.select(this).attr('id'));
 		  });
+
+		  dispatch.on("mouseOver" + ".a", function(id) {
+		  	d3.selectAll('#' + id)
+		  		.style('fill', 'red')
+		  })
+		  dispatch.on("mouseOut" + ".a", function(id) {
+		  	d3.selectAll('#' + id)
+		  		.style('fill', 'steelblue')
+		  })
+
+
 		  
 
 		chartGroup.append('g')
@@ -108,8 +124,25 @@ function barChart1() {
 			.text('Number of Orders per Top 10 Restaurants');
 
 
-
 		return chart;
 	}
+
+	chart.selectionDispatcher = function(_) {
+		if (!arguments.length) return dispatcher;
+    	dispatcher = _;
+    	return chart;
+	}
+
+	// chart.updateSelection = function (selectedData) {
+ //    if (!arguments.length) return;
+ //    console.log(selectedData)
+
+ //    // Select an element if its datum was selected
+ //    d3.selectAll("tr").classed('selected', d =>
+ //      selectedData.includes(d)
+ //    );
+
+ //  };
+
 	return chart;
 }

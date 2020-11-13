@@ -16,15 +16,14 @@
 
 		//console.log(groupingRestaurantData)
 
-
-		const dispatchString = 'selectionUpdated';
+		let dispatch = d3.dispatch('mouseOver', 'mouseOut')
 
 		// calling function to create bar chart
 		let restaurantOrderData = barChart1()
-		('#vis-svg-1', data)
+		('#vis-svg-1', data, dispatch)
 
 		let restaurantDistanceData = barChart2()
-		('#restaurantDistance', data)
+		('#restaurantDistance', data, dispatch)
 
 		let orderOriginChart = piechart1()
 		('#pie-chart1', data)
