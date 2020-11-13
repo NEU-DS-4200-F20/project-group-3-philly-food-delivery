@@ -26,7 +26,7 @@
 		('#restaurantDistance', data, dispatch)
 
 		let orderOriginChart = piechart1()
-		('#pie-chart1', data)
+		('#pie-chart1', data, dispatch)
 
 		let orderZoneChart = piechart2()
 		('#pie-chart2', data)

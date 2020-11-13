@@ -1,6 +1,6 @@
 function piechart1() {
 
-	function chart(selector, data) {
+	function chart(selector, data, dispatch) {
 
 		let orderOriginMap = d3.rollup(data, v => v.length, d=>d.partner)
 		
@@ -84,6 +84,20 @@ function piechart1() {
 			.attr("text-anchor", "left")
 			.style("alignment-baseline", "middle")
 			.style("font-size", "10px")
+
+		dispatch.on("mouseOver" + ".c", function(id) {
+		  	// d3.selectAll('#' + id)
+		  	// 	.style('fill', 'red')
+		  	// console.log(id.substring(4))
+		  	updatedMap = d3.rollup(data, v => v.length, d=>d._seller_id, d => d.partner)
+		  	// console.log(updatedMap)
+		  	console.log(updatedMap.get(parseInt(id.substring(4))))
+		  	svg.remove();
+		  })
+		// dispatch.on("mouseOut" + ".a", function(id) {
+		//   	d3.selectAll('#' + id)
+		//   		.style('fill', 'steelblue')
+		//   })
 
 		return chart;
 	}
