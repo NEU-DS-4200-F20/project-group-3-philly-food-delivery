@@ -11,8 +11,8 @@ function barChart1() {
 
 
 		// setting dimensions
-		let width = 500,
-		height = 500,
+		let width = 300,
+		height = 300,
 		margin = {
 			top: 30,
 			bottom: 30,
@@ -25,7 +25,8 @@ function barChart1() {
 			.append('svg')
 				.attr('width', width)
 				.attr('height', height)
-				.style('background', 'white');
+				.style('background', 'white')
+				.attr('y', 20);
 
 		let chartGroup = svg
 			.append('g')
@@ -44,10 +45,11 @@ function barChart1() {
 			.call(yAxis)
 			//Add label
 			.append('text')
-			.attr('x', 35)
+			.attr('x', 5)
 			.attr('y', -10)
 			.style('stroke', 'black')
-			.text('Number of Orders');
+			.text('Orders')
+			.style('font-size', '10px');
 
 		// getting restaurant names from the map
 		let keys = Array.from(restaurantsOrderCount.keys());
@@ -102,26 +104,32 @@ function barChart1() {
 		  		.style('fill', 'steelblue')
 		  })
 
-
-		  
-
 		chartGroup.append('g')
 	  		.attr('class', 'x axis')
 	  		.attr('transform', 'translate(0, ' + (height - margin.bottom - margin.top) + ')')
 	  		.call(xAxis)
 	  		//Add label
 			.append('text')
-			.attr('x', (width - 50) / 2)
+			.attr('x', (width - 50) / 2 - 10)
 			.attr('y', 25)
 			.style('stroke', 'black')
-			.text('Restaurants');
+			.text('Restaurants')
+			.style('font-size', '10px');
 
 		// adding title
 		svg.append('text')
-			.attr('x', width / 2 - 150)
-			.attr('y', 20)
+			.attr('x', width / 2 - 60)
+			.attr('y', 12)
 			.style('stroke', 'black')
-			.text('Number of Orders per Top 10 Restaurants');
+			.text('Number of Orders per')
+			.style('font-size', '15px');
+		// adding title
+		svg.append('text')
+			.attr('x', width / 2 - 50)
+			.attr('y', 25)
+			.style('stroke', 'black')
+			.text('Top 10 Restaurants')
+			.style('font-size', '15px');
 
 
 		return chart;

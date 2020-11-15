@@ -20,16 +20,16 @@
 
 		// calling function to create bar chart
 		let restaurantOrderData = barChart1()
-			('#vis-svg-1', data, dispatch)
+			('#bar-chart-svg', data, dispatch)
 
 		let restaurantDistanceData = barChart2()
-			('#restaurantDistance', data, dispatch)
+			('#bar-chart-svg', data, dispatch)
 
 		let orderOriginChart = piechart1()
-			('#pie-chart1', data, dispatch)
+			('#pie-chart-svg', data, dispatch)
 
 		let orderZoneChart = piechart2()
-			('#pie-chart2', data, dispatch)
+			('#pie-chart-svg', data, dispatch)
 
 	});
 

@@ -30,13 +30,14 @@ function createPieChart2(svg, chartGroup, orderZoneMap, width, radius) {
 		.attr('x', width / 2 - 120)
 		.attr('y', 15)
 		.style('stroke', 'black')
-		.text('Orders Outside Delivery Zones');
+		.text('Orders Outside Delivery Zones')
+		.style('font-size', '15px');
 
 	// legend
-	svg.append("circle").attr("cx", 300).attr("cy", 25).attr("r", 4).style("fill", "red")
-	svg.append("circle").attr("cx", 300).attr("cy", 35).attr("r", 4).style("fill", "blue")
-	svg.append("text").attr("x", 310).attr("y", 25).text("True").style("font-size", "10px").attr("alignment-baseline", "middle")
-	svg.append("text").attr("x", 310).attr("y", 35).text("False").style("font-size", "10px").attr("alignment-baseline", "middle")
+	svg.append("circle").attr("cx", 250).attr("cy", 25).attr("r", 2).style("fill", "red")
+	svg.append("circle").attr("cx", 250).attr("cy", 35).attr("r", 2).style("fill", "blue")
+	svg.append("text").attr("x", 260).attr("y", 25).text("True").style("font-size", "7px").attr("alignment-baseline", "middle")
+	svg.append("text").attr("x", 260).attr("y", 35).text("False").style("font-size", "7px").attr("alignment-baseline", "middle")
 
 }
 
@@ -50,8 +51,8 @@ function piechart2() {
 
 		// let maxCount = d3.max(restaurantsOrderCount.values())
 
-		let width = 350,
-			height = 350,
+		let width = 300,
+			height = 250,
 			margin = {
 				top: 30,
 				bottom: 30,
@@ -66,7 +67,8 @@ function piechart2() {
 			.append('svg')
 			.attr('width', width)
 			.attr('height', height)
-			.style('background', 'white');
+			.style('background', 'white')
+			.attr('x', 500);
 
 		let chartGroup = svg
 			.append('g')
@@ -103,7 +105,7 @@ function piechart2() {
 			svg.selectAll("text").remove();
 			svg.selectAll("circle").remove();
 
-			console.log(updatedZones.get(parseInt(id.substring(4))))
+			// console.log(updatedZones.get(parseInt(id.substring(4))))
 
 
 
