@@ -1,37 +1,10 @@
-function piechart1() {
-
-	function chart(selector, data, dispatch) {
-
-		let orderOriginMap = d3.rollup(data, v => v.length, d=>d.partner)
-		
-
-		// let maxCount = d3.max(restaurantsOrderCount.values())
-
-		let width = 400,
-		height = 350,
-		margin = {
-			top: 30,
-			bottom: 30,
-			left: 50,
-			right: 30
-		},
-		radius = Math.min(width, height) / 2 - 20,
-		colors = d3.scaleOrdinal()
+function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
+	
+	let colors = d3.scaleOrdinal()
 			.domain(Array.from(orderOriginMap.keys()))
 			.range(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
-			// console.log(Array.from(orderOriginMap.keys()))
 
-		let svg = d3.select(selector)
-			.append('svg')
-					.attr('width', width)
-					.attr('height', height)
-					.style('background', 'white');
-
-		let chartGroup = svg
-			.append('g')
-				.attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
-
-		// Compute the position of each group on the pie:
+	// Compute the position of each group on the pie:
 		let pie = d3.pie()
 			.value(function(d) {return d[1];});
 
@@ -84,6 +57,38 @@ function piechart1() {
 			.attr("text-anchor", "left")
 			.style("alignment-baseline", "middle")
 			.style("font-size", "10px")
+}
+
+function piechart1() {
+
+	function chart(selector, data, dispatch) {
+
+		let orderOriginMap = d3.rollup(data, v => v.length, d=>d.partner)
+		
+		// let maxCount = d3.max(restaurantsOrderCount.values())
+
+		let width = 400,
+		height = 350,
+		margin = {
+			top: 30,
+			bottom: 30,
+			left: 50,
+			right: 30
+		},
+		radius = Math.min(width, height) / 2 - 20;
+			// console.log(Array.from(orderOriginMap.keys()))
+
+		let svg = d3.select(selector)
+			.append('svg')
+					.attr('width', width)
+					.attr('height', height)
+					.style('background', 'white');
+
+		let chartGroup = svg
+			.append('g')
+				.attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+
+		createPieChart(svg, chartGroup, orderOriginMap, width, radius)
 
 		dispatch.on("mouseOver" + ".c", function(id) {
 		  	// d3.selectAll('#' + id)
