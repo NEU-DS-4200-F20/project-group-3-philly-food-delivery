@@ -94,6 +94,22 @@ function piechart2() {
 
 			createPieChart2(svg, chartGroup, updatedZones.get(parseInt(id.substring(4))), width, radius);
 		})
+
+
+		dispatch.on("mouseOut" + ".d", function (id) {
+
+
+			chartGroup.selectAll("*").remove();
+			svg.selectAll("text").remove();
+			svg.selectAll("circle").remove();
+
+			console.log(updatedZones.get(parseInt(id.substring(4))))
+
+
+
+			createPieChart2(svg, chartGroup, orderZoneMap, width, radius);
+		})
+
 		// let keys = Array.from(orderOriginMap.keys())
 
 

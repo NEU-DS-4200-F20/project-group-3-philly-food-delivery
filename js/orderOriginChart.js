@@ -93,12 +93,9 @@ function piechart1() {
 		createPieChart(svg, chartGroup, orderOriginMap, width, radius)
 
 		dispatch.on("mouseOver" + ".c", function (id) {
-			// d3.selectAll('#' + id)
-			// 	.style('fill', 'red')
-			// console.log(id.substring(4))
+
 			updatedMap = d3.rollup(data, v => v.length, d => d._seller_id, d => d.partner)
-			// console.log(updatedMap)
-			//svg.empty();
+
 			svg.selectAll("circle").remove();
 			svg.selectAll("text").remove();
 
@@ -110,10 +107,22 @@ function piechart1() {
 
 			createPieChart(svg, chartGroup, updatedMap.get(parseInt(id.substring(4))), width, radius);
 		})
-		// dispatch.on("mouseOut" + ".a", function(id) {
-		//   	d3.selectAll('#' + id)
-		//   		.style('fill', 'steelblue')
-		//   })
+
+		dispatch.on("mouseOut" + ".c", function (id) {
+
+
+			svg.selectAll("circle").remove();
+			svg.selectAll("text").remove();
+
+			chartGroup.selectAll("*").remove();
+
+			console.log(updatedMap.get(parseInt(id.substring(4))))
+
+
+
+			createPieChart(svg, chartGroup, orderOriginMap, width, radius);
+		})
+
 
 		return chart;
 	}
