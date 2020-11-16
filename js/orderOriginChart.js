@@ -68,11 +68,6 @@ function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
 		.attr("text-anchor", "left")
 		.style("alignment-baseline", "middle")
 		.style("font-size", "6px")
-
-
-
-
-
 }
 
 function piechart1() {

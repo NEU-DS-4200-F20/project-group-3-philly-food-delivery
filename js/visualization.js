@@ -31,6 +31,9 @@
 		let orderZoneChart = piechart2()
 			('#pie-chart-svg', data, dispatch)
 
+		let financialAnalysis = financialData()
+			('#pie-chart-svg', data, dispatch)
+
 	});
 
 })());

@@ -1,4 +1,5 @@
 function createPieChart2(svg, chartGroup, orderZoneMap, width, radius) {
+
 	// Compute the position of each group on the pie:
 	let pie = d3.pie()
 		.value(function (d) { return d[1]; });
@@ -29,6 +30,7 @@ function createPieChart2(svg, chartGroup, orderZoneMap, width, radius) {
 			.outerRadius(radius)
 		)
 		.attr('fill', function (d) {
+			console.log(d)
 			return (colors(d.data[0]))
 		})
 		.attr("stroke", "black")
@@ -44,8 +46,8 @@ function createPieChart2(svg, chartGroup, orderZoneMap, width, radius) {
 		.style('font-size', '12px');
 
 	// legend
-	svg.append("circle").attr("cx", 205).attr("cy", 25).attr("r", 2).style("fill", "red")
-	svg.append("circle").attr("cx", 205).attr("cy", 35).attr("r", 2).style("fill", "blue")
+	svg.append("circle").attr("cx", 205).attr("cy", 25).attr("r", 2).style("fill", colors('t'))
+	svg.append("circle").attr("cx", 205).attr("cy", 35).attr("r", 2).style("fill", colors('f'))
 	svg.append("text").attr("x", 210).attr("y", 25)
 		.text("Outside" + " " + Math.round((orderZoneMap.get("t") / totalCnt) * 100) + "%")
 		.style("font-size", "6px").attr("alignment-baseline", "middle")
