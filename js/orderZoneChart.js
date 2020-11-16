@@ -9,6 +9,16 @@ function createPieChart2(svg, chartGroup, orderZoneMap, width, radius) {
 		.domain(Array.from(orderZoneMap.keys()))
 		.range(['blue', 'red']);
 
+	let keys = Array.from(orderZoneMap.keys())
+
+
+	let totalCnt = 0
+
+	for (var i = 0; i < keys.length; i++) {
+		totalCnt += orderZoneMap.get(keys[i])
+
+	}
+
 
 	chartGroup.selectAll('whatever')
 		.data(data_ready)
@@ -36,8 +46,12 @@ function createPieChart2(svg, chartGroup, orderZoneMap, width, radius) {
 	// legend
 	svg.append("circle").attr("cx", 205).attr("cy", 25).attr("r", 2).style("fill", "red")
 	svg.append("circle").attr("cx", 205).attr("cy", 35).attr("r", 2).style("fill", "blue")
-	svg.append("text").attr("x", 210).attr("y", 25).text("True").style("font-size", "7px").attr("alignment-baseline", "middle")
-	svg.append("text").attr("x", 210).attr("y", 35).text("False").style("font-size", "7px").attr("alignment-baseline", "middle")
+	svg.append("text").attr("x", 210).attr("y", 25)
+		.text("Outside" + " " + Math.round((orderZoneMap.get("t") / totalCnt) * 100) + "%")
+		.style("font-size", "6px").attr("alignment-baseline", "middle")
+	svg.append("text").attr("x", 210).attr("y", 35)
+		.text("Inside" + " " + Math.round((orderZoneMap.get("f") / totalCnt) * 100) + "%")
+		.style("font-size", "6px").attr("alignment-baseline", "middle")
 
 }
 

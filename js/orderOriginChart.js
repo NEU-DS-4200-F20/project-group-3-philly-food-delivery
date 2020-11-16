@@ -11,6 +11,7 @@ function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
 	let data_ready = pie(orderOriginMap.entries())
 
 
+
 	chartGroup.selectAll('whatever')
 		.data(data_ready)
 		.enter()
@@ -36,6 +37,14 @@ function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
 
 	let keys = Array.from(orderOriginMap.keys())
 
+	let totalCnt = 0
+
+	for (var i = 0; i < keys.length; i++) {
+		totalCnt += orderOriginMap.get(keys[i])
+
+	}
+	//console.log(totalCnt);
+
 
 	// Add one dot in the legend for each name.
 	svg.selectAll("mydots")
@@ -55,10 +64,15 @@ function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
 		.attr("x", 210)
 		.attr("y", function (d, i) { return 25 + i * 9 })
 		.style("fill", function (d) { return colors(d) })
-		.text(function (d) { return d })
+		.text(function (d) { return d + " " + Math.round((orderOriginMap.get(d) / totalCnt) * 100) + "%" })
 		.attr("text-anchor", "left")
 		.style("alignment-baseline", "middle")
-		.style("font-size", "7px")
+		.style("font-size", "6px")
+
+
+
+
+
 }
 
 function piechart1() {
