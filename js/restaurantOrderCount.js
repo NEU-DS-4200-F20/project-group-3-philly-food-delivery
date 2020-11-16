@@ -85,21 +85,23 @@ function barChart1() {
 		  .attr('id', function(d) {
 		  	return "rest" + d[0]
 		  })
-		  .on('mouseover', function(d) {
+		  .on('mouseover', function(d) { //mouseover event
 		  	d3.select(this)
 		  		.style('fill', "red")
 		  	dispatch.call('mouseOver', this, d3.select(this).attr('id'));		  	
 		  })
-		  .on('mouseout', function(d) {
+		  .on('mouseout', function(d) { //mouseout event
 			  d3.select(this)
 				  .style('fill', 'steelblue')
 			dispatch.call('mouseOut', this, d3.select(this).attr('id'));
 		  });
 
+		  //dispatch mouse listener event
 		  dispatch.on("mouseOver" + ".a", function(id) {
 		  	d3.selectAll('#' + id)
 		  		.style('fill', 'red')
 		  })
+		  // dispatch mouseout listener event
 		  dispatch.on("mouseOut" + ".a", function(id) {
 		  	d3.selectAll('#' + id)
 		  		.style('fill', 'steelblue')
@@ -141,17 +143,6 @@ function barChart1() {
     	dispatcher = _;
     	return chart;
 	}
-
-	// chart.updateSelection = function (selectedData) {
- //    if (!arguments.length) return;
- //    console.log(selectedData)
-
- //    // Select an element if its datum was selected
- //    d3.selectAll("tr").classed('selected', d =>
- //      selectedData.includes(d)
- //    );
-
- //  };
 
 	return chart;
 }

@@ -1,26 +1,28 @@
 function createPieChart2(svg, chartGroup, orderZoneMap, width, radius) {
 
-	// Compute the position of each group on the pie:
+	// Compute pie positions
 	let pie = d3.pie()
 		.value(function (d) { return d[1]; });
 
 	let data_ready = pie(orderZoneMap.entries())
 
+	// setting colors to keys
 	let colors = d3.scaleOrdinal()
 		.domain(['f', 't'])
 		.range(['blue', 'red']);
 
 	let keys = Array.from(orderZoneMap.keys())
 
-
+	// initializing total value of pie
 	let totalCnt = 0
 
+	// looping to add value to totalCnt
 	for (var i = 0; i < keys.length; i++) {
 		totalCnt += orderZoneMap.get(keys[i])
 
 	}
 
-
+	// appending pie to chartGroup
 	chartGroup.selectAll('whatever')
 		.data(data_ready)
 		.enter()
@@ -62,6 +64,7 @@ function piechart2() {
 
 	function chart(selector, data, dispatch) {
 
+		// creating map of zones and number of orders within
 		let orderZoneMap = d3.rollup(data, v => v.length, d => d.out_of_zone)
 
 
@@ -77,8 +80,9 @@ function piechart2() {
 			},
 			radius = Math.min(width, height) / 2 - 20;
 
-		console.log(Array.from(orderZoneMap.keys()))
+		// console.log(Array.from(orderZoneMap.keys()))
 
+		// creating svg
 		let svg = d3.select(selector)
 			.append('svg')
 			.attr('width', width)
@@ -90,69 +94,41 @@ function piechart2() {
 			.append('g')
 			.attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
+		// calling helper function to create chart
 		createPieChart2(svg, chartGroup, orderZoneMap, width, radius);
 
+		// dispatch mouseover event
 		dispatch.on("mouseOver" + ".d", function (id) {
-			// d3.selectAll('#' + id)
-			// 	.style('fill', 'red')
-			// console.log(id.substring(4))
-			updatedZones = d3.rollup(data, v => v.length, d => d._seller_id, d => d.out_of_zone)
-			// console.log(updatedMap)
-			//svg.empty();
 
+			// create new map given data (id)
+			updatedZones = d3.rollup(data, v => v.length, d => d._seller_id, d => d.out_of_zone)
+
+			// remove svg elements
 			chartGroup.selectAll("*").remove();
 			svg.selectAll("text").remove();
 			svg.selectAll("circle").remove();
 
 			// console.log(updatedMap.get(parseInt(id.substring(4))));
 
+			// redrawing svg elements given new data
 			createPieChart2(svg, chartGroup, updatedZones.get(parseInt(id.substring(4))), width, radius);
 		})
 
-
+		// dispatch mouse out event
 		dispatch.on("mouseOut" + ".d", function (id) {
 
-
+			// remove svg elements
 			chartGroup.selectAll("*").remove();
 			svg.selectAll("text").remove();
 			svg.selectAll("circle").remove();
 
 			// console.log(updatedZones.get(parseInt(id.substring(4))))
 
-
-
+			// redraw svg elements
 			createPieChart2(svg, chartGroup, orderZoneMap, width, radius);
 		})
 
-		// let keys = Array.from(orderOriginMap.keys())
-
-
-		// // Add one dot in the legend for each name.
-		// svg.selectAll("mydots")
-		// 	.data(keys)
-		// 	.enter()
-		// 	.append("circle")
-		// 	.attr("cx", 330)
-		// 	.attr("cy", function (d, i) { return 20 + i * 10 })
-		// 	.attr("r", 4)
-		// 	.style("fill", function (d) { return colors(d) })
-
-		// // Add one dot in the legend for each name.
-		// svg.selectAll("mylabels")
-		// 	.data(keys)
-		// 	.enter()
-		// 	.append("text")
-		// 	.attr("x", 340)
-		// 	.attr("y", function (d, i) { return 20 + i * 10 })
-		// 	.style("fill", function (d) { return colors(d) })
-		// 	.text(function (d) { return d })
-		// 	.attr("text-anchor", "left")
-		// 	.style("alignment-baseline", "middle")
-		// 	.style("font-size", "10px")
-
-
-
-
+		
 		return chart;
 	}
 	return chart;

@@ -1,17 +1,18 @@
+// helper function to create pie chart
 function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
 
+	// setting colors defined to keys
 	let colors = d3.scaleOrdinal()
 		.domain(Array.from(orderOriginMap.keys()))
 		.range(['#4daf4a', '#377eb8', '#ff7f00', '#984ea3', '#e41a1c']);
 
-	// Compute the position of each group on the pie:
+	// Compute pie positions
 	let pie = d3.pie()
 		.value(function (d) { return d[1]; });
 
 	let data_ready = pie(orderOriginMap.entries())
 
-
-
+	// appending pie chart to chartGroup
 	chartGroup.selectAll('whatever')
 		.data(data_ready)
 		.enter()
@@ -37,8 +38,9 @@ function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
 
 	let keys = Array.from(orderOriginMap.keys())
 
+	// calculating total pie chart value
 	let totalCnt = 0
-
+	// loop to add value to totalCnt
 	for (var i = 0; i < keys.length; i++) {
 		totalCnt += orderOriginMap.get(keys[i])
 
@@ -74,6 +76,7 @@ function piechart1() {
 
 	function chart(selector, data, dispatch) {
 
+		// using d3 to create map of each partner to their total number of orders
 		let orderOriginMap = d3.rollup(data, v => v.length, d => d.partner)
 
 		// let maxCount = d3.max(restaurantsOrderCount.values())
@@ -90,6 +93,7 @@ function piechart1() {
 		// console.log(Array.from(orderOriginMap.keys()))
 		// console.log(orderOriginMap);
 
+		//creating svg
 		let svg = d3.select(selector)
 			.append('svg')
 			.attr('width', width)
@@ -100,12 +104,15 @@ function piechart1() {
 			.append('g')
 			.attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
+		// call pie chart helper function
 		createPieChart(svg, chartGroup, orderOriginMap, width, radius)
 
+		// dispatch event when mouse over happens
 		dispatch.on("mouseOver" + ".c", function (id) {
 
 			updatedMap = d3.rollup(data, v => v.length, d => d._seller_id, d => d.partner)
 
+			// remove all svg elements
 			svg.selectAll("circle").remove();
 			svg.selectAll("text").remove();
 
@@ -113,23 +120,22 @@ function piechart1() {
 
 			console.log(updatedMap.get(parseInt(id.substring(4))))
 
-
-
+			// re-drawing updated svg elements
 			createPieChart(svg, chartGroup, updatedMap.get(parseInt(id.substring(4))), width, radius);
 		})
 
+		// dispatch event when mouse out happens
 		dispatch.on("mouseOut" + ".c", function (id) {
 
-
+			// remove all svg elements
 			svg.selectAll("circle").remove();
 			svg.selectAll("text").remove();
 
 			chartGroup.selectAll("*").remove();
 
-			console.log(updatedMap.get(parseInt(id.substring(4))))
+			// console.log(updatedMap.get(parseInt(id.substring(4))))
 
-
-
+			// re-drawing svg elements
 			createPieChart(svg, chartGroup, orderOriginMap, width, radius);
 		})
 

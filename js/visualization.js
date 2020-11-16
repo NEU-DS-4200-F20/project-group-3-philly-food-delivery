@@ -16,21 +16,26 @@
 
 		//console.log(groupingRestaurantData)
 
+		// creating dispatch listeners
 		let dispatch = d3.dispatch('mouseOver', 'mouseOut')
 
 		// calling function to create bar chart
 		let restaurantOrderData = barChart1()
 			('#bar-chart-svg', data, dispatch)
 
+		// calling function to create second bar chart
 		let restaurantDistanceData = barChart2()
 			('#bar-chart-svg', data, dispatch)
 
+		// calling function to create first pie chart
 		let orderOriginChart = piechart1()
 			('#pie-chart-svg', data, dispatch)
 
+		// calling function to create second pie chart
 		let orderZoneChart = piechart2()
 			('#pie-chart-svg', data, dispatch)
 
+		// calling function to do financial analysis
 		let financialAnalysis = financialData()
 			('#pie-chart-svg', data, dispatch)
 

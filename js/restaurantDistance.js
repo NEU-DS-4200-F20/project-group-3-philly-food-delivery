@@ -9,8 +9,6 @@ function barChart2() {
 		// getting max delivery distance for y-axis scale
 		let maxCount = d3.max(restaurantsOrderDistance.values())
 
-
-
 		// setting dimensions
 		let width = 250,
 		height = 250,
@@ -63,7 +61,7 @@ function barChart2() {
 			.domain(keys.sort((a,b) =>a-b))
 			.padding(.1)
 
-		// creating s axis on the page
+		// creating x axis on the page
 		let xAxis = d3.axisBottom(xScale);
 
 		// creating bars for the bar chart
@@ -86,23 +84,25 @@ function barChart2() {
 		  .attr('id', function(d) {
 		  	return "rest" + d[0]
 		  })
-		  .on('mouseover', function(d) { 
+		  .on('mouseover', function(d) { //mouseover event
 			  
 			d3.select(this)
 				.style('fill', 'red');
 				// console.log(this)
 				dispatch.call('mouseOver', this, d3.select(this).attr('id'));
 			})
-		  .on('mouseout', function(d) {
+		  .on('mouseout', function(d) { //mouseout event
 			d3.select(this)
 				.style('fill', 'steelblue')
 				dispatch.call('mouseOut', this, d3.select(this).attr('id'));
 			});
 
+		  // dispatch mousover listener event
 		  dispatch.on("mouseOver" + ".b", function(id) {
 		  	d3.selectAll('#' + id)
 		  		.style('fill', 'red')
 		  })
+		  // dispatch mouseout listener event
 		  dispatch.on("mouseOut" + ".b", function(id) {
 		  	d3.selectAll('#' + id)
 		  		.style('fill', 'steelblue')
@@ -141,24 +141,5 @@ function barChart2() {
 		return chart;
 	}
 
-	chart.selectionDispatcher = function(_) {
-		if (!arguments.length) return dispatcher;
-    	dispatcher = _;
-    	return chart;
-	}
-
-	chart.updateSelection = function (selectedData) {
-    if (!arguments.length) return;
-    console.log(selectedData)
-
-    d3.selectAll("#")
-
-    // Select an element if its datum was selected
-    // d3.selectAll("tr").classed('selected', d =>
-    //   selectedData.includes(d)
-    // );
-    // if bar class = selectedData?
-
-  };
 	return chart;
 }
