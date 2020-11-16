@@ -12,8 +12,8 @@ function barChart2() {
 
 
 		// setting dimensions
-		let width = 300,
-		height = 300,
+		let width = 250,
+		height = 250,
 		margin = {
 			top: 30,
 			bottom: 30,
@@ -48,10 +48,10 @@ function barChart2() {
 			//Add label
 			.append('text')
 			.attr('x', 0)
-			.attr('y', -10)
+			.attr('y', -8)
 			.style('stroke', 'black')
 			.text('Miles')
-			.style('font-size', '10px');
+			.style('font-size', '8px');
 
 		// getting restaurant names from the map
 		let keys = Array.from(restaurantsOrderDistance.keys());
@@ -118,23 +118,23 @@ function barChart2() {
 			.attr('y', 25)
 			.style('stroke', 'black')
 			.text('Restaurants')
-			.style('font-size', '10px');
+			.style('font-size', '8px');
 
 		// adding title
 		svg.append('text')
-			.attr('x', width / 2 - 80)
+			.attr('x', width / 2 - 65)
 			.attr('y', 12)
 			.style('stroke', 'black')
 			.text('Average Delivery Distance per')
-			.style('font-size', '15px')
+			.style('font-size', '12px')
 
 		// adding title
 		svg.append('text')
 			.attr('x', width / 2 - 40)
-			.attr('y', 27)
+			.attr('y', 25)
 			.style('stroke', 'black')
 			.text('Top 10 Restaurants')
-			.style('font-size', '15px');
+			.style('font-size', '12px');
 
 
 

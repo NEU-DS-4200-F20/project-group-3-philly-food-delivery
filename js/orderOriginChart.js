@@ -28,11 +28,11 @@ function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
 
 	// adding title
 	svg.append('text')
-		.attr('x', width / 2 - 100)
+		.attr('x', width / 2 - 85)
 		.attr('y', 15)
 		.style('stroke', 'black')
 		.text('Distribution of Order Origin')
-		.style('font-size', '15px');
+		.style('font-size', '12px');
 
 	let keys = Array.from(orderOriginMap.keys())
 
@@ -42,7 +42,7 @@ function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
 		.data(keys)
 		.enter()
 		.append("circle")
-		.attr("cx", 250)
+		.attr("cx", 205)
 		.attr("cy", function (d, i) { return 25 + i * 9 })
 		.attr("r", 2)
 		.style("fill", function (d) { return colors(d) })
@@ -52,7 +52,7 @@ function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
 		.data(keys)
 		.enter()
 		.append("text")
-		.attr("x", 260)
+		.attr("x", 210)
 		.attr("y", function (d, i) { return 25 + i * 9 })
 		.style("fill", function (d) { return colors(d) })
 		.text(function (d) { return d })
@@ -69,8 +69,8 @@ function piechart1() {
 
 		// let maxCount = d3.max(restaurantsOrderCount.values())
 
-		let width = 300,
-			height = 250,
+		let width = 250,
+			height = 200,
 			margin = {
 				top: 30,
 				bottom: 30,
