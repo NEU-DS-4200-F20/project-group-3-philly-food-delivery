@@ -9,7 +9,7 @@ function createPieChart2(svg, chartGroup, orderZoneMap, width, radius) {
 	// setting colors to keys
 	let colors = d3.scaleOrdinal()
 		.domain(['f', 't'])
-		.range(['blue', 'red']);
+		.range(['#377eb8', '#e41a1c']);
 
 	let keys = Array.from(orderZoneMap.keys())
 
@@ -48,8 +48,8 @@ function createPieChart2(svg, chartGroup, orderZoneMap, width, radius) {
 		.style('font-size', '12px');
 
 	// legend
-	svg.append("circle").attr("cx", 205).attr("cy", 25).attr("r", 2).style("fill", "red")
-	svg.append("circle").attr("cx", 205).attr("cy", 35).attr("r", 2).style("fill", "blue")
+	svg.append("circle").attr("cx", 205).attr("cy", 25).attr("r", 2).style("fill", "#e41a1c")
+	svg.append("circle").attr("cx", 205).attr("cy", 35).attr("r", 2).style("fill", "#377eb8")
 	svg.append("text").attr("x", 210).attr("y", 25)
 		.text("Outside" + " " + Math.round((orderZoneMap.get("t") / totalCnt) * 100) + "%")
 		.style("font-size", "6px").attr("alignment-baseline", "middle")

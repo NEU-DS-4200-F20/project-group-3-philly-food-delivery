@@ -4,7 +4,7 @@ function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
 	// setting colors defined to keys
 	let colors = d3.scaleOrdinal()
 		.domain(Array.from(orderOriginMap.keys()))
-		.range(['#4daf4a', '#377eb8', '#ff7f00', '#984ea3', '#e41a1c']);
+		.range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00']);
 
 	// Compute pie positions
 	let pie = d3.pie()
