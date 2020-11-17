@@ -45,11 +45,12 @@ function barChart2() {
 			.call(yAxis)
 			//Add label
 			.append('text')
-			.attr('x', 0)
-			.attr('y', -8)
+			.attr('x', -80)
+			.attr('y', -30)
 			.style('stroke', 'black')
 			.text('Miles')
-			.style('font-size', '8px');
+			.style('font-size', '8px')
+			.attr('transform', 'rotate(-90)');
 
 		// getting restaurant names from the map
 		let keys = Array.from(restaurantsOrderDistance.keys());
@@ -114,7 +115,7 @@ function barChart2() {
 	  		.call(xAxis)
 	  		//Add label
 			.append('text')
-			.attr('x', (width - 50) / 2)
+			.attr('x', (width - 50) / 2 - 10)
 			.attr('y', 25)
 			.style('stroke', 'black')
 			.text('Restaurants')

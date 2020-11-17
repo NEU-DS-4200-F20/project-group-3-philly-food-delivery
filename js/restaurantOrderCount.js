@@ -46,11 +46,12 @@ function barChart1() {
 			.call(yAxis)
 			//Add label
 			.append('text')
-			.attr('x', 5)
-			.attr('y', -5)
+			.attr('x', -80)
+			.attr('y', -40)
 			.style('stroke', 'black')
 			.text('Orders')
-			.style('font-size', '8px');
+			.style('font-size', '8px')
+			.attr('transform', 'rotate(-90)');
 
 		// getting restaurant names from the map
 		let keys = Array.from(restaurantsOrderCount.keys());
@@ -128,7 +129,7 @@ function barChart1() {
 			.style('font-size', '12px');
 		// adding title
 		svg.append('text')
-			.attr('x', width / 2 - 30)
+			.attr('x', width / 2 - 40)
 			.attr('y', 25)
 			.style('stroke', 'black')
 			.text('Top 10 Restaurants')
