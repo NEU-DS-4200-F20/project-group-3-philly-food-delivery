@@ -118,7 +118,7 @@ function piechart1() {
 
 			chartGroup.selectAll("*").remove();
 
-			console.log(updatedMap.get(parseInt(id.substring(4))))
+			// console.log(updatedMap.get(parseInt(id.substring(4))))
 
 			// re-drawing updated svg elements
 			createPieChart(svg, chartGroup, updatedMap.get(parseInt(id.substring(4))), width, radius);

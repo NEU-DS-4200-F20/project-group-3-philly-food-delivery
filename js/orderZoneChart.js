@@ -32,7 +32,7 @@ function createPieChart2(svg, chartGroup, orderZoneMap, width, radius) {
 			.outerRadius(radius)
 		)
 		.attr('fill', function (d) {
-			console.log(d)
+			// console.log(d)
 			return (colors(d.data[0]))
 		})
 		.attr("stroke", "black")

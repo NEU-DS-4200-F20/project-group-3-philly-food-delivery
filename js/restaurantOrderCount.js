@@ -88,6 +88,7 @@ function barChart1() {
 				return "rest" + d[0]
 			})
 			.on('mouseover', function (d) { //mouseover event
+				// console.log(d)
 				d3.select(this)
 					.style('fill', "red")
 				dispatch.call('mouseOver', this, d3.select(this).attr('id'));
