@@ -67,6 +67,13 @@ function barChart1() {
 		// creating s axis on the page
 		let xAxis = d3.axisBottom(xScale);
 
+		// adding tooltip for the barchart interactive display
+		let tooltip = d3.select("body")
+		   	.append("div")
+		    .style("position", "absolute")
+		    .style("z-index", "10")
+		    .style("visibility", "hidden")
+
 		// creating bars for the bar chart
 		let bar = chartGroup.append('g')
 			.selectAll('rect')
@@ -87,16 +94,27 @@ function barChart1() {
 			.attr('id', function (d) {
 				return "rest" + d[0]
 			})
-			.on('mouseover', function (d) { //mouseover event
-				// console.log(d)
+			.on('mouseover', function (d, i) { //mouseover event
+				console.log(d)
 				d3.select(this)
-					.style('fill', "red")
+					.style('fill', 'red');
 				dispatch.call('mouseOver', this, d3.select(this).attr('id'));
+				return tooltip.style("visibility", "visible")
+				.text(i[1].toFixed() + " orders")
+				.style("font-size", "12px")
+				.style("background-color", "black")
+				.style("color", "white")
+				.style("border-radius", "3px");
+			})
+			.on('mousemove', function(d){
+				return tooltip.style('top', d.pageY - 10  + 'px')
+				.style('left', d.pageX + 10 + 'px');
 			})
 			.on('mouseout', function (d) { //mouseout event
 				d3.select(this)
 					.style('fill', 'steelblue')
 				dispatch.call('mouseOut', this, d3.select(this).attr('id'));
+				return tooltip.style("visibility", "hidden");
 			});
 
 		//dispatch mouse listener event
