@@ -5,6 +5,8 @@ function barChart1() {
 		//creating map of the data by grouping by restaurants
 		let restaurantsOrderCount = d3.rollup(data, v => v.length, d => d._seller_id)
 
+		// format comma
+		let formatComma = d3.format(",")
 
 		// getting max order count for y-axis scale
 		let maxCount = d3.max(restaurantsOrderCount.values())
@@ -87,7 +89,7 @@ function barChart1() {
 				return yScale(restaurantsOrderCount.get(d[0]));
 			})
 			.attr('width', xScale.bandwidth())
-			.attr('fill', 'steelblue')
+			.attr('fill', '#6699cc')
 			.attr('height', function (d) {
 				return height - margin.bottom - 30 - yScale(restaurantsOrderCount.get(d[0]));
 			})
@@ -97,10 +99,10 @@ function barChart1() {
 			.on('mouseover', function (d, i) { //mouseover event
 				console.log(d)
 				d3.select(this)
-					.style('fill', 'red');
+					.style('fill', '#ff3333');
 				dispatch.call('mouseOver', this, d3.select(this).attr('id'));
 				return tooltip.style("visibility", "visible")
-				.text(i[1].toFixed() + " orders")
+				.text(formatComma(i[1].toFixed()) + " orders")
 				.style("font-size", "12px")
 				.style("background-color", "black")
 				.style("color", "white")
@@ -112,7 +114,7 @@ function barChart1() {
 			})
 			.on('mouseout', function (d) { //mouseout event
 				d3.select(this)
-					.style('fill', 'steelblue')
+					.style('fill', '#6699cc')
 				dispatch.call('mouseOut', this, d3.select(this).attr('id'));
 				return tooltip.style("visibility", "hidden");
 			});
@@ -120,12 +122,12 @@ function barChart1() {
 		//dispatch mouse listener event
 		dispatch.on("mouseOver" + ".a", function (id) {
 			d3.selectAll('#' + id)
-				.style('fill', 'red')
+				.style('fill', '#ff3333')
 		})
 		// dispatch mouseout listener event
 		dispatch.on("mouseOut" + ".a", function (id) {
 			d3.selectAll('#' + id)
-				.style('fill', 'steelblue')
+				.style('fill', '#6699cc')
 		})
 
 		chartGroup.append('g')

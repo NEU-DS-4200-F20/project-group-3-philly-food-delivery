@@ -87,7 +87,7 @@ function barChart2() {
 				return yScale(restaurantsOrderDistance.get(d[0]));
 			})
 			.attr('width', xScale.bandwidth())
-			.attr('fill', 'steelblue')
+			.attr('fill', '#6699cc')
 			.attr('height', function (d) {
 				return height - margin.bottom - 30 - yScale(restaurantsOrderDistance.get(d[0]));
 			})
@@ -97,7 +97,7 @@ function barChart2() {
 			.on('mouseover', function (d, i) { //mouseover event
 				console.log(d)
 				d3.select(this)
-					.style('fill', 'red');
+					.style('fill', '#ff3333');
 				dispatch.call('mouseOver', this, d3.select(this).attr('id'));
 				return tooltip.style("visibility", "visible")
 				.text(i[1].toFixed(2) + " miles")
@@ -112,7 +112,7 @@ function barChart2() {
 			})
 			.on('mouseout', function (d) { //mouseout event
 				d3.select(this)
-					.style('fill', 'steelblue')
+					.style('fill', '#6699cc')
 				dispatch.call('mouseOut', this, d3.select(this).attr('id'));
 				return tooltip.style("visibility", "hidden");
 			});
@@ -120,12 +120,12 @@ function barChart2() {
 		// dispatch mousover listener event
 		dispatch.on("mouseOver" + ".b", function (id) {
 			d3.selectAll('#' + id)
-				.style('fill', 'red')
+				.style('fill', '#ff3333')
 		})
 		// dispatch mouseout listener event
 		dispatch.on("mouseOut" + ".b", function (id) {
 			d3.selectAll('#' + id)
-				.style('fill', 'steelblue')
+				.style('fill', '#6699cc')
 		})
 
 		chartGroup.append('g')

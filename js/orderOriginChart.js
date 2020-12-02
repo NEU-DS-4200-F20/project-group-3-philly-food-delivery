@@ -1,10 +1,5 @@
 // helper function to create pie chart
-function createPieChart(svg, chartGroup, orderOriginMap, width, radius) {
-
-	// setting colors defined to keys
-	let colors = d3.scaleOrdinal()
-		.domain(Array.from(orderOriginMap.keys()))
-		.range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00']);
+function createPieChart(svg, chartGroup, orderOriginMap, width, radius, colors) {
 
 	// Compute pie positions
 	let pie = d3.pie()
@@ -104,8 +99,13 @@ function piechart1() {
 			.append('g')
 			.attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
+		// setting colors defined to keys
+		let colors = d3.scaleOrdinal()
+			.domain(Array.from(orderOriginMap.keys()))
+			.range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00']);	
+
 		// call pie chart helper function
-		createPieChart(svg, chartGroup, orderOriginMap, width, radius)
+		createPieChart(svg, chartGroup, orderOriginMap, width, radius, colors)
 
 		// dispatch event when mouse over happens
 		dispatch.on("mouseOver" + ".c", function (id) {
@@ -121,7 +121,7 @@ function piechart1() {
 			// console.log(updatedMap.get(parseInt(id.substring(4))))
 
 			// re-drawing updated svg elements
-			createPieChart(svg, chartGroup, updatedMap.get(parseInt(id.substring(4))), width, radius);
+			createPieChart(svg, chartGroup, updatedMap.get(parseInt(id.substring(4))), width, radius, colors);
 		})
 
 		// dispatch event when mouse out happens
@@ -136,7 +136,7 @@ function piechart1() {
 			// console.log(updatedMap.get(parseInt(id.substring(4))))
 
 			// re-drawing svg elements
-			createPieChart(svg, chartGroup, orderOriginMap, width, radius);
+			createPieChart(svg, chartGroup, orderOriginMap, width, radius, colors);
 		})
 
 

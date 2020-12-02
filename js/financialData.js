@@ -4,6 +4,8 @@ function calculateCostSavings(svg, costMap) {
 
 	let keys = Array.from(costMap.keys());
 
+	let formatComma = d3.format(",")
+
 	// total cost of all orders
 	let total = 0;
 
@@ -42,7 +44,7 @@ function calculateCostSavings(svg, costMap) {
 		.attr('x', 75)
 		.attr('y', 90)
 		.style('stroke', 'green')
-		.text('$' + Math.round(total / 2 * 0.2))
+		.text('$' + formatComma(Math.round(total / 2 * 0.2)))
 		.style('font-size', '15px');
 }
 
