@@ -99,7 +99,7 @@ function barChart1() {
 			.on('mouseover', function (d, i) { //mouseover event
 				console.log(d)
 				d3.select(this)
-					.style('fill', '#ff3333');
+					.style('fill', '#e41a1c');
 				dispatch.call('mouseOver', this, d3.select(this).attr('id'));
 				return tooltip.style("visibility", "visible")
 				.text(formatComma(i[1].toFixed()) + " orders")
@@ -122,7 +122,7 @@ function barChart1() {
 		//dispatch mouse listener event
 		dispatch.on("mouseOver" + ".a", function (id) {
 			d3.selectAll('#' + id)
-				.style('fill', '#ff3333')
+				.style('fill', '#e41a1c')
 		})
 		// dispatch mouseout listener event
 		dispatch.on("mouseOut" + ".a", function (id) {
