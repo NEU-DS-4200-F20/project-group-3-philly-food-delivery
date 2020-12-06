@@ -97,7 +97,7 @@ function barChart2() {
 			.on('mouseover', function (d, i) { //mouseover event
 				console.log(d)
 				d3.select(this)
-					.style('fill', '#ff3333');
+					.style('fill', '#e41a1c');
 				dispatch.call('mouseOver', this, d3.select(this).attr('id'));
 				return tooltip.style("visibility", "visible")
 				.text(i[1].toFixed(2) + " miles")
@@ -120,7 +120,7 @@ function barChart2() {
 		// dispatch mousover listener event
 		dispatch.on("mouseOver" + ".b", function (id) {
 			d3.selectAll('#' + id)
-				.style('fill', '#ff3333')
+				.style('fill', '#e41a1c')
 		})
 		// dispatch mouseout listener event
 		dispatch.on("mouseOut" + ".b", function (id) {
