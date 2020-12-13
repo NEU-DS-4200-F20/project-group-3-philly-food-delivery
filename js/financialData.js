@@ -33,10 +33,10 @@ function calculateCostSavings(svg, costMap) {
 
 	// appending title
 	svg.append('text')
-		.attr('x', 65)
+		.attr('x', 45)
 		.attr('y', 70)
 		.style('stroke', 'black')
-		.text('Delivery Zones')
+		.text('Delivery Zones in 2020')
 		.style('font-size', '12px');
 
 	// appending cost saved number given 50% of orders and 20% premium from other delivery services
